@@ -10,18 +10,18 @@ public class Wave : MonoBehaviour
     public LineRenderer conection;
     public GameObject dot, end;
 
-    private Controller controller;
+    private SeriesController controller;
 
     //---------------------------------------------
 
     private void Start()
     {
-        controller = FindObjectOfType<Controller>();
+        controller = FindObjectOfType<SeriesController>();
 
         initial = transform.position;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (!controller.run)
             return;

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Controller : MonoBehaviour
+public class SeriesController : MonoBehaviour
 {
     private GameObject lastPoint;
 
@@ -53,7 +53,7 @@ public class Controller : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Main");
+            SceneManager.LoadScene("Seriess");
         }
     }
 }

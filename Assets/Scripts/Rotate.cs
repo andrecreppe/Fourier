@@ -12,14 +12,14 @@ public class Rotate : MonoBehaviour
     public LineRenderer radiusLine, circleOutline;
     public GameObject center, point;
 
-    private Controller controller;
+    private SeriesController controller;
     private Wave wave;
 
     //---------------------------------------------
 
     private void Start()
     {
-        controller = FindObjectOfType<Controller>();
+        controller = FindObjectOfType<SeriesController>();
         controller.NewLastPoint(point);
 
         wave = FindObjectOfType<Wave>();
@@ -33,7 +33,7 @@ public class Rotate : MonoBehaviour
         serie = controller.count;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (!controller.run)
             return;
