@@ -6,6 +6,7 @@ public class Rotate : MonoBehaviour
 {
     private Vector3 centerPosition;
     private float rotateX, rotateY, theta, posX, posY;
+    private GameObject previousPoint;
 
     public int serie;
     public float radius;
@@ -20,7 +21,6 @@ public class Rotate : MonoBehaviour
     private void Start()
     {
         controller = FindObjectOfType<SeriesController>();
-        controller.NewLastPoint(point);
 
         wave = FindObjectOfType<Wave>();
         wave.SetNewEnd(point);
@@ -30,7 +30,7 @@ public class Rotate : MonoBehaviour
 
         theta = 0;
 
-        serie = controller.count;
+        serie = controller.nMultiplier;
     }
 
     private void FixedUpdate()
@@ -40,8 +40,8 @@ public class Rotate : MonoBehaviour
 
         centerPosition = center.transform.position;
 
-        rotateX = radius * (4 / (Mathf.PI * serie)) * Mathf.Cos(theta * serie);
-        rotateY = radius * (4 / (Mathf.PI * serie)) * Mathf.Sin(theta * serie);
+        //SquareCircle();
+        TriangleCircle();
         theta += 0.01f;
 
         transform.position = new Vector3(centerPosition.x + rotateX, centerPosition.y + rotateY);
@@ -52,6 +52,20 @@ public class Rotate : MonoBehaviour
     }
 
     //---------------------------------------------
+
+    private void SquareCircle()
+    {
+        rotateX = radius * (4 / (Mathf.PI * serie)) * Mathf.Cos(theta * serie);
+        rotateY = radius * (4 / (Mathf.PI * serie)) * Mathf.Sin(theta * serie);
+    }
+
+    private void TriangleCircle()
+    {
+        float calc = radius * ((8 * Mathf.Pow(-1, (serie-1)/2)) / (Mathf.PI * Mathf.PI * serie * serie));
+
+        rotateX = calc * Mathf.Cos(theta * serie); ;
+        rotateY = calc * Mathf.Sin(theta * serie); ;
+    }
 
     private void UpdateCoordinates()
     {

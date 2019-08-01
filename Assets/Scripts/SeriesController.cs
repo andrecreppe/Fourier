@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class SeriesController : MonoBehaviour
 {
-    private GameObject lastPoint;
+    private readonly int limit = 100;
+    private GameObject[] points;
 
-    public int count;
+    public int nMultiplier, counter;
     public bool run;
 
     public GameObject circlePrefab, startPoint;
@@ -18,9 +19,10 @@ public class SeriesController : MonoBehaviour
 
     private void Start()
     {
-        count = 1;
+        counter = 0;
 
-        lastPoint = startPoint;
+        points = new GameObject[limit];
+        points[counter] = startPoint;
 
         run = false;
     }
@@ -29,18 +31,23 @@ public class SeriesController : MonoBehaviour
 
     public void NewCircle()
     {
-        count+=2;
+        if(counter < limit)
+        {
+            nMultiplier += 2;
 
-        counterText.text = "Quantidade = " + (count + 1)/2;
+            GameObject circle = Instantiate(circlePrefab, points[counter].transform.position, Quaternion.identity);
+            circle.transform.parent = points[counter].transform;
 
-        GameObject circle = Instantiate(circlePrefab, lastPoint.transform.position, Quaternion.identity);
+            counter++;
+            counterText.text = "Total = " + counter + 1;
 
-        circle.transform.parent = lastPoint.transform;
+            points[counter] = circle;
+        }
     }
 
-    public void NewLastPoint(GameObject point)
+    public void DeleteLastCircle()
     {
-        lastPoint = point; 
+
     }
 
     public void SwapState()
@@ -53,7 +60,7 @@ public class SeriesController : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Seriess");
+            SceneManager.LoadScene("Series");
         }
     }
 }

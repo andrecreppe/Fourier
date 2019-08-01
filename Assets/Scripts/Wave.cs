@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Wave : MonoBehaviour
 {
+    private int count;
     private float destroyTime = 7f;
     private Vector3 position, initial;
 
@@ -17,6 +18,8 @@ public class Wave : MonoBehaviour
     private void Start()
     {
         controller = FindObjectOfType<SeriesController>();
+
+        count = 0;
 
         initial = transform.position;
     }
@@ -33,6 +36,7 @@ public class Wave : MonoBehaviour
         DrawLine();
 
         SpawnWave();
+        //DrawWave();
     }
 
     //---------------------------------------------
@@ -46,14 +50,14 @@ public class Wave : MonoBehaviour
     private void SpawnWave()
     {
         GameObject point = Instantiate(dot, transform.position, Quaternion.identity);
-        point.GetComponent<Rigidbody2D>().velocity = new Vector2(1, 0);
+        point.GetComponent<Rigidbody2D>().velocity = new Vector2(1.5f, 0);
 
         Object.Destroy(point, destroyTime);
     }
 
     private void DrawWave()
     {
-        //more efficient wave
+        
     }
 
     //---------------------------------------------
