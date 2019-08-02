@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class SeriesController : MonoBehaviour
 {
-    private readonly int limit = 100;
-    private GameObject[] points;
-
+    private readonly int limit = 99; //total--
+    
     public int nMultiplier, counter;
     public bool run;
+    public GameObject[] points;
 
     public GameObject circlePrefab, startPoint;
     public Text counterText, runText;
@@ -23,6 +23,8 @@ public class SeriesController : MonoBehaviour
 
         points = new GameObject[limit];
         points[counter] = startPoint;
+
+        counterText.text = "Total = " + (counter + 1);
 
         run = false;
     }
@@ -39,15 +41,13 @@ public class SeriesController : MonoBehaviour
             circle.transform.parent = points[counter].transform;
 
             counter++;
-            counterText.text = "Total = " + counter + 1;
-
-            points[counter] = circle;
+            counterText.text = "Total = " + (counter + 0);
         }
     }
 
-    public void DeleteLastCircle()
+    public void DeleteCircle()
     {
-
+        Debug.Log("Delete");
     }
 
     public void SwapState()
