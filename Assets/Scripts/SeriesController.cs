@@ -8,12 +8,13 @@ public class SeriesController : MonoBehaviour
 {
     private readonly int limit = 99; //total--
     
-    public int nMultiplier, counter;
+    public int nMultiplier, counter, function;
     public bool run;
     public GameObject[] points;
 
     public GameObject circlePrefab, startPoint;
     public Text counterText, runText;
+    public Slider speedScale;
 
     //---------------------------------------------
 
@@ -35,7 +36,10 @@ public class SeriesController : MonoBehaviour
     {
         if(counter < limit)
         {
-            nMultiplier += 2;
+            if(function == 1)
+                nMultiplier += 2; //Square wave
+            else
+                nMultiplier++; //Saw Tooth
 
             GameObject circle = Instantiate(circlePrefab, points[counter].transform.position, Quaternion.identity);
             circle.transform.parent = points[counter].transform;
@@ -50,7 +54,7 @@ public class SeriesController : MonoBehaviour
         Debug.Log("Delete");
     }
 
-    public void SwapState()
+    public void SwapState() //melhorar esse ssistema
     {
         if (!run)
         {
@@ -60,7 +64,13 @@ public class SeriesController : MonoBehaviour
         }
         else
         {
+            Time.timeScale = 1;
             SceneManager.LoadScene("Series");
         }
+    }
+
+    public void UpdateSpeed()
+    {
+        Time.timeScale = speedScale.value;
     }
 }

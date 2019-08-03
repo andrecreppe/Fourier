@@ -43,14 +43,21 @@ public class Rotate : MonoBehaviour
 
         centerPosition = center.transform.position;
 
-        SquareCircle();
+        if(controller.function == 1) //Square Wave
+            SquareCircle();
+        else //Saw Tooth wave
+            SawToothCircle();
+
         theta += 0.01f;
 
         transform.position = new Vector3(centerPosition.x + rotateX, centerPosition.y + rotateY);
 
         UpdateCoordinates();
-        DrawCircle();
-        DrawRadius();
+
+        if (controller.function == 1) //Square Wave
+            DrawSquareCircle();
+        else //Saw Tooth wave
+           DrawSawToothCircle();
     }
 
     //---------------------------------------------
@@ -68,13 +75,7 @@ public class Rotate : MonoBehaviour
         rotateY = radius * (4 / (Mathf.PI * serie)) * Mathf.Sin(theta * serie);
     }
 
-    private void UpdateCoordinates()
-    {
-        posX = centerPosition.x;
-        posY = centerPosition.y;
-    }
-
-    private void DrawCircle()
+    private void DrawSquareCircle()
     {
         float x, y;
         float resolution = 0.01f, theta = 0f;
@@ -89,6 +90,40 @@ public class Rotate : MonoBehaviour
             y = radius * (4 / (Mathf.PI * serie)) * Mathf.Sin(theta);
             circleOutline.SetPosition(i, new Vector3(x + posX, y + posY, 0));
         }
+
+        DrawRadius();
+    }
+
+    private void SawToothCircle()
+    {
+        int negative = (serie%2 == 0) ? (1) : (-1);
+        rotateX = 2.5f * radius * (2 / (Mathf.PI * serie * negative)) * Mathf.Cos(theta * serie);
+        rotateY = 2.5f * radius * (2 / (Mathf.PI * serie * negative)) * Mathf.Sin(theta * serie);
+    }
+
+    private void DrawSawToothCircle()
+    {
+        float x, y;
+        float resolution = 0.01f, theta = 0f;
+        int Size = (int)((1f / resolution) + 1f);
+
+        circleOutline.positionCount = Size;
+
+        for (int i = 0; i < Size; i++)
+        {
+            theta += (2.0f * Mathf.PI * resolution);
+            x = 2.5f * radius * (2 / (Mathf.PI * serie)) * Mathf.Cos(theta * serie);
+            y = 2.5f * radius * (2 / (Mathf.PI * serie)) * Mathf.Sin(theta * serie);
+            circleOutline.SetPosition(i, new Vector3(x + posX, y + posY, 0));
+        }
+
+        DrawRadius();
+    }
+
+    private void UpdateCoordinates()
+    {
+        posX = centerPosition.x;
+        posY = centerPosition.y;
     }
 
     private void DrawRadius()
