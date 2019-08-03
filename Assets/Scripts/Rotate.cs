@@ -22,9 +22,6 @@ public class Rotate : MonoBehaviour
     {
         controller = FindObjectOfType<SeriesController>();
 
-        wave = FindObjectOfType<Wave>();
-        wave.SetNewEnd(point);
-
         centerPosition = center.transform.position;
         transform.position = new Vector3(centerPosition.x + radius, centerPosition.y);
         

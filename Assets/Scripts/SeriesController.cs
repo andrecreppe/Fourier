@@ -6,20 +6,24 @@ using UnityEngine.SceneManagement;
 
 public class SeriesController : MonoBehaviour
 {
-    private readonly int limit = 99; //total--
+    private readonly int limit = 49;
     
     public int nMultiplier, counter, function;
     public bool run;
     public GameObject[] points;
 
-    public GameObject circlePrefab, startPoint;
+    public GameObject circlePrefab, startPoint, buttons, slider;
     public Text counterText, runText;
     public Slider speedScale;
+
+    private Wave wave;
 
     //---------------------------------------------
 
     private void Start()
     {
+        wave = FindObjectOfType<Wave>();
+
         counter = 0;
 
         points = new GameObject[limit];
@@ -44,23 +48,36 @@ public class SeriesController : MonoBehaviour
             GameObject circle = Instantiate(circlePrefab, points[counter].transform.position, Quaternion.identity);
             circle.transform.parent = points[counter].transform;
 
+            wave.SetNewEnd();
+
             counter++;
-            counterText.text = "Total = " + (counter + 0);
+            counterText.text = "Total = " + (counter + 1);
         }
     }
 
     public void DeleteCircle()
     {
-        Debug.Log("Delete");
+        if(counter > 0)
+        {
+            GameObject.Destroy(points[counter]);
+            points[counter] = null;
+            counter--;
+
+            counterText.text = "Total = " + (counter + 1);
+            wave.SetNewEnd();
+        }
     }
 
-    public void SwapState() //melhorar esse ssistema
+    public void SwapState()
     {
         if (!run)
         {
-            run = !run;
+            run = true;
 
             runText.text = "STOP";
+
+            buttons.SetActive(false);
+            slider.SetActive(true);
         }
         else
         {
@@ -72,5 +89,10 @@ public class SeriesController : MonoBehaviour
     public void UpdateSpeed()
     {
         Time.timeScale = speedScale.value;
+    }
+
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
