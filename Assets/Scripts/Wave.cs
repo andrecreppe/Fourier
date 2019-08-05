@@ -14,10 +14,13 @@ public class Wave : MonoBehaviour
 
     //---------------------------------------------
 
-    private void Start()
+    private void Awake()
     {
         controller = FindObjectOfType<SeriesController>();
+    }
 
+    private void Start()
+    {
         initial = transform.position;
     }
 

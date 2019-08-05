@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: cb5667e8c0b28b44fb26a54e0f9b134b
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Lemon/Milk
+  fontNames:
+  - Lemon/Milk
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 68bf2041308631f489361950a004a491, type: 3}
+  - {fileID: 12800000, guid: 91db207905d585542bfbaec718110b16, type: 3}
+  - {fileID: 12800000, guid: 355d918ae2fc0f544a59228ac401b54c, type: 3}
+  - {fileID: 12800000, guid: 9b63a3bb3f0e10842851746f9ce13b61, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -10,6 +10,11 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene("Series");
     }
 
+    public void LoadSeriesConfigs()
+    {
+        SceneManager.LoadScene("SeriesConfigs");
+    }
+
     public void LoadDrawing()
     {
         SceneManager.LoadScene("Drawing");

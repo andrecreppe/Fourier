@@ -18,10 +18,13 @@ public class Rotate : MonoBehaviour
 
     //---------------------------------------------
 
-    private void Start()
+    private void Awake()
     {
         controller = FindObjectOfType<SeriesController>();
+    }
 
+    private void Start()
+    {
         centerPosition = center.transform.position;
         transform.position = new Vector3(centerPosition.x + radius, centerPosition.y);
         
@@ -40,7 +43,7 @@ public class Rotate : MonoBehaviour
 
         centerPosition = center.transform.position;
 
-        if(controller.function == 1) //Square Wave
+        if(PlayerPrefs.GetInt("wave") == 1) //Square Wave
             SquareCircle();
         else //Saw Tooth wave
             SawToothCircle();
@@ -51,7 +54,7 @@ public class Rotate : MonoBehaviour
 
         UpdateCoordinates();
 
-        if (controller.function == 1) //Square Wave
+        if (PlayerPrefs.GetInt("wave") == 1) //Square Wave
             DrawSquareCircle();
         else //Saw Tooth wave
            DrawSawToothCircle();

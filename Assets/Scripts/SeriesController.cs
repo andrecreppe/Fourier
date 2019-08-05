@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class SeriesController : MonoBehaviour
 {
     private readonly int limit = 49;
-    
-    public int nMultiplier, counter, function;
+    private int activeWavePattern;
+
+    public int nMultiplier, counter;
     public bool run;
     public GameObject[] points;
 
@@ -17,19 +17,27 @@ public class SeriesController : MonoBehaviour
     public Slider speedScale;
 
     private Wave wave;
+    private MenuController menuController;
 
     //---------------------------------------------
+    private void Awake()
+    {
+        wave = FindObjectOfType<Wave>();
+        menuController = FindObjectOfType<MenuController>();
+    }
 
     private void Start()
     {
-        wave = FindObjectOfType<Wave>();
-
         counter = 0;
+        counterText.text = "Total = " + (counter + 1);
 
         points = new GameObject[limit];
         points[counter] = startPoint;
 
-        counterText.text = "Total = " + (counter + 1);
+        if (!PlayerPrefs.HasKey("wave"))
+            activeWavePattern = 1;
+        else
+            activeWavePattern = PlayerPrefs.GetInt("wave");
 
         run = false;
     }
@@ -40,7 +48,7 @@ public class SeriesController : MonoBehaviour
     {
         if(counter < limit)
         {
-            if(function == 1)
+            if(activeWavePattern == 1)
                 nMultiplier += 2; //Square wave
             else
                 nMultiplier++; //Saw Tooth
@@ -82,17 +90,12 @@ public class SeriesController : MonoBehaviour
         else
         {
             Time.timeScale = 1;
-            SceneManager.LoadScene("Series");
+            menuController.LoadSeries();
         }
     }
 
     public void UpdateSpeed()
     {
         Time.timeScale = speedScale.value;
-    }
-
-    public void LoadMenu()
-    {
-        SceneManager.LoadScene("Menu");
     }
 }
