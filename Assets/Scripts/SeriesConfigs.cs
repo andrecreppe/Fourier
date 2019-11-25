@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class SeriesConfigs : MonoBehaviour
 {
+    //------------------ VARIABLES --------------------
+
     private int borderWidth, bigSize, smallSize;
     private bool firstTime;
     private Color32 active, inactive, lightActive, lightInactive;
@@ -15,7 +17,7 @@ public class SeriesConfigs : MonoBehaviour
     public RectTransform squareButton, sawToothButton;
     public Text squareText, sawToothText;
 
-    //---------------------------------------------
+    //------------------ PRIVATE METHODS --------------------
 
     private void Start()
     {
@@ -43,7 +45,7 @@ public class SeriesConfigs : MonoBehaviour
         firstTime = false;
     }
 
-    //---------------------------------------------
+    //------------------ PUBLIC METHODS --------------------
 
     public void SetSquareAsActive()
     {

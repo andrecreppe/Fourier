@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class SeriesController : MonoBehaviour
 {
+    //------------------ VARIABLES --------------------
+
     private readonly int limit = 49;
     private int activeWavePattern;
 
@@ -19,7 +21,8 @@ public class SeriesController : MonoBehaviour
     private Wave wave;
     private MenuController menuController;
 
-    //---------------------------------------------
+    //------------------ PRIVATE METHODS --------------------
+
     private void Awake()
     {
         wave = FindObjectOfType<Wave>();
@@ -29,7 +32,7 @@ public class SeriesController : MonoBehaviour
     private void Start()
     {
         counter = 0;
-        counterText.text = "Total = " + (counter + 1);
+        counterText.text = "ITERATIONS = " + (counter + 1);
 
         points = new GameObject[limit];
         points[counter] = startPoint;
@@ -42,7 +45,7 @@ public class SeriesController : MonoBehaviour
         run = false;
     }
 
-    //---------------------------------------------
+    //------------------ PUBLIC METHODS --------------------
 
     public void NewCircle()
     {
@@ -59,7 +62,7 @@ public class SeriesController : MonoBehaviour
             wave.SetNewEnd();
 
             counter++;
-            counterText.text = "Total = " + (counter + 1);
+            counterText.text = "ITERATIONS = " + (counter + 1);
         }
     }
 
@@ -71,7 +74,7 @@ public class SeriesController : MonoBehaviour
             points[counter] = null;
             counter--;
 
-            counterText.text = "Total = " + (counter + 1);
+            counterText.text = "ITERATIONS = " + (counter + 1);
             wave.SetNewEnd();
         }
     }

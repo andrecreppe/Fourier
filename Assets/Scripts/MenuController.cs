@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
+    //------------------ PUBLIC METHODS --------------------
+
     public void LoadSeries()
     {
         SceneManager.LoadScene("Series");
@@ -23,5 +25,10 @@ public class MenuController : MonoBehaviour
     public void LoadMenu()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    public void LoadAbout()
+    {
+        SceneManager.LoadScene("About");
     }
 }

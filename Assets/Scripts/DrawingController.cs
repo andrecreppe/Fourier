@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DrawingController : MonoBehaviour
 {
+    //------------------ VARIABLES --------------------
+
     private Vector3 centerPosition;
     private readonly int arraySize = 100;
     private bool run;
@@ -13,7 +15,7 @@ public class DrawingController : MonoBehaviour
     public float[,] dftData;
     public GameObject center;
 
-    //---------------------------------------------
+    //------------------ PRIVATE METHODS --------------------
 
     private void Start()
     {
@@ -41,8 +43,6 @@ public class DrawingController : MonoBehaviour
         if(run)
             Rotate();
     }
-
-    //---------------------------------------------
 
     private void DFT()
     {
