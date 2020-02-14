@@ -691,16 +691,16 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'This app is menant to
 
-    show the amazing
+    show off the amazing
 
     proprierties of the
 
     fourier tools
 
 
-    - version: 1.1
+    - version: x.x
 
-    (december 2019)'
+    (MM YYYY)'
 --- !u!222 &584716567
 CanvasRenderer:
   m_ObjectHideFlags: 0
