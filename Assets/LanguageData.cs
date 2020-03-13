@@ -16,12 +16,13 @@ public class LanguageData : MonoBehaviour
 
     private int control;
 
-    private readonly int max = 2;
     private readonly string langKey = "lang";
     private readonly string version = "1.1";
+    private readonly string monthRelease = "03/2020";
+
+    public readonly int languagesNumber = 2;
 
     public Sprite[] flags;
-    public Button changeButton;
     public Text[] textField;
 
     //------------------ PRIVATE METHODS --------------------
@@ -30,7 +31,7 @@ public class LanguageData : MonoBehaviour
     {
         int saved = PlayerPrefs.GetInt(langKey);
 
-        if (saved > 3 || saved < 1)
+        if (saved > languagesNumber || saved < 1)
         {
             if (Application.systemLanguage == SystemLanguage.Portuguese)
             {
@@ -66,7 +67,7 @@ public class LanguageData : MonoBehaviour
                 "\nproprierties of the" +
                 "\nfourier tools" +
                 "\n\n- version: " + version +
-                "\n(january, 2020)";
+                "\n" + monthRelease;
 
             textField[2].text = "the developer";
             textField[3].text = "André z. creppe" +
@@ -85,7 +86,7 @@ public class LanguageData : MonoBehaviour
                 "\nas incriveis propriedades" +
                 "\ndas ferramentas de fourier" +
                 "\n\n- versão: " + version +
-                "\n(janeiro, 2020)";
+                "\n" + monthRelease;
 
             textField[2].text = "desenvolvedor";
             textField[3].text = "andré z. creppe" +
@@ -107,69 +108,46 @@ public class LanguageData : MonoBehaviour
         //            textField[4].text = "";
         //
         //            textField[5].text = "";
+        //        }
+    }
+
+    private void UpdateMenuText()
+    {
+        if(control == 1)
+        {
+            textField[0].text = "Fourier series";
+            textField[1].text = "Fourier draw";
+        }
+        else if(control == 2)
+        {
+            textField[0].text = "Série de fourier";
+            textField[1].text = "Desenho de fourier";
+        }
+        //        else if(control == 3) //German
+        //        {
+        //            textField[0].text = "";
+        //            textField[1].text = "";
         //        }
     }
 
     private void UpdateSeriesText()
     {
-        if (control == 1) //English
-        {
-            textField[0].text = "about the app";
-            textField[1].text = "This app is menant to" +
-                "\nshow off the amazing" +
-                "\nproprierties of the" +
-                "\nfourier tools" +
-                "\n\n- version: " + version +
-                "\n(january, 2020)";
 
-            textField[2].text = "the developer";
-            textField[3].text = "André z. creppe" +
-                "\n(all rights reserved)";
-
-            textField[4].text = "contact";
-
-            textField[5].text = "Language:" +
-                "\nEnglish";
-        }
-        else if (control == 2) //Portuguese
-        {
-            textField[0].text = "sobre este app";
-            textField[1].text = "esse aplicativo tem como" +
-                "\nfinalidade demonstrar" +
-                "\nas incriveis propriedades" +
-                "\ndas ferramentas de fourier" +
-                "\n\n- versão: " + version +
-                "\n(janeiro, 2020)";
-
-            textField[2].text = "desenvolvedor";
-            textField[3].text = "andré z. creppe" +
-                "\n(direitos reservados)";
-
-            textField[4].text = "contato";
-
-            textField[5].text = "idioma:" +
-                "\nPortuguês";
-        }
-        //        else if(control == 3) //German
-        //        {
-        //            textField[0].text = "";
-        //            textField[1].text = "";
-        //
-        //            textField[2].text = "";
-        //            textField[3].text = "";
-        //
-        //            textField[4].text = "";
-        //
-        //            textField[5].text = "";
-        //        }
     }
 
-    private void UpdateLanguage()
+    //------------------ PUBLIC METHODS --------------------
+
+    public void UpdateLanguage()
     {
+        control = PlayerPrefs.GetInt(langKey);
+
         switch (SceneManager.GetActiveScene().name)
         {
             case "About":
                 UpdateAboutText();
+                break;
+            case "Menu":
+                UpdateMenuText();
                 break;
             case "Series":
                 UpdateSeriesText();
