@@ -19,9 +19,9 @@ public class LanguageController : MonoBehaviour
 
     public void Start()
     {
-        control = PlayerPrefs.GetInt(langKey) - 1;
+        control = 1;//PlayerPrefs.GetInt(langKey) - 1;
 
-        langDataScript = LanguageData.FindObjectOfType<LanguageData>();
+        langDataScript = FindObjectOfType<LanguageData>();
 
         maxLanguages = langDataScript.languagesNumber;
     }
@@ -30,6 +30,7 @@ public class LanguageController : MonoBehaviour
 
     public void UpdateLanguage()
     {
+        return;
         control++;
 
         if (control > maxLanguages)

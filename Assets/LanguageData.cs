@@ -18,7 +18,7 @@ public class LanguageData : MonoBehaviour
 
     private readonly string langKey = "lang";
     private readonly string version = "1.1";
-    private readonly string monthRelease = "03/2020";
+    private readonly string monthRelease = "06/2020";
 
     public readonly int languagesNumber = 2;
 
