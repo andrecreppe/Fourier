@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
+    //------------------ PUBLIC METHODS --------------------
+
     public void LoadSeries()
     {
         SceneManager.LoadScene("Series");
@@ -23,5 +26,10 @@ public class MenuController : MonoBehaviour
     public void LoadMenu()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    public void LoadAbout()
+    {
+        SceneManager.LoadScene("About");
     }
 }

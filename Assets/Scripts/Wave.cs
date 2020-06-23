@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Wave : MonoBehaviour
 {
+    //------------------ VARIABLES --------------------
+
     private float destroyTime = 7f;
     private Vector3 position, initial;
 
@@ -12,7 +14,7 @@ public class Wave : MonoBehaviour
 
     private SeriesController controller;
 
-    //---------------------------------------------
+    //------------------ PRIVATE METHODS --------------------
 
     private void Awake()
     {
@@ -38,8 +40,6 @@ public class Wave : MonoBehaviour
         SpawnWave();
     }
 
-    //---------------------------------------------
-
     private void DrawLine()
     {
         conection.SetPosition(0, position);
@@ -54,7 +54,7 @@ public class Wave : MonoBehaviour
         Object.Destroy(point, destroyTime);
     }
 
-    //---------------------------------------------
+    //------------------ PUBLIC METHODS --------------------
 
     public void SetNewEnd()
     {

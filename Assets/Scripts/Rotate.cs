@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Rotate : MonoBehaviour
 {
+    //------------------ VARIABLES --------------------
+
     private Vector3 centerPosition;
     private float rotateX, rotateY, theta, posX, posY;
     private GameObject previousPoint;
@@ -16,7 +18,7 @@ public class Rotate : MonoBehaviour
     private SeriesController controller;
     private Wave wave;
 
-    //---------------------------------------------
+    //------------------ PRIVATE METHODS --------------------
 
     private void Awake()
     {
@@ -60,14 +62,10 @@ public class Rotate : MonoBehaviour
            DrawSawToothCircle();
     }
 
-    //---------------------------------------------
-
     private void SetPointInController()
     {
         controller.points[controller.counter] = this.gameObject;
     }
-
-    //---------------------------------------------
 
     private void SquareCircle()
     {
